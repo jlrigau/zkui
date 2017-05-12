@@ -1,5 +1,7 @@
 #!/bin/sh
 
+JAVA_OPTS=$JAVA_OPTS
+
 ZK_SERVER=${ZK_SERVER:-"localhost:2181"}
 
 USER_SET=${USER_SET:-"{\"users\": [{ \"username\":\"admin\" , \"password\":\"manager\",\"role\": \"ADMIN\" \},{ \"username\":\"appconfig\" , \"password\":\"appconfig\",\"role\": \"USER\" \}]\}"}
@@ -12,4 +14,4 @@ sed -i "s/^loginMessage=.*$/loginMessage=$LOGIN_MESSAGE/" /var/app/config.cfg
 
 echo "Starting zkui with server $ZK_SERVER"
 
-exec java -jar /var/app/zkui.jar
+exec java $JAVA_OPTS -jar /var/app/zkui.jar
